@@ -29,3 +29,4 @@ document.querySelectorAll('.nav a').forEach(link => {
 if (!('IntersectionObserver' in window)) {
   sections.forEach(s => s.classList.add('visible'));
 }
+
