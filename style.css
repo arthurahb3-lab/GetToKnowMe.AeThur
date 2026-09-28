@@ -1,0 +1,386 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black: #0a0a0a;
+  --dark: #111;
+  --white: #e8e6e1;
+  --red: #6b0f1a;
+  --red-bright: #a01a2a;
+  --blue: #0f1a2b;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'IM Fell English', serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* granulado */
+.noise {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* HEADER */
+.header {
+  padding: 80px 8vw 40px;
+  border-bottom: 1px solid #222;
+  text-align: left;
+  position: relative;
+}
+
+.logo {
+  font-family: 'UnifrakturCook', cursive;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  color: var(--white);
+  line-height: 0.9;
+  letter-spacing: 2px;
+  text-shadow: 3px 3px 0 var(--red);
+}
+
+.tagline {
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--red-bright);
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  margin-top: 12px;
+  letter-spacing: 1px;
+}
+
+.sub {
+  font-style: italic;
+  color: #777;
+  margin-top: 4px;
+  font-size: 0.95rem;
+}
+
+.symbols {
+  margin-top: 20px;
+  color: var(--red);
+  font-size: 1.2rem;
+  letter-spacing: 12px;
+}
+
+/* NAV */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid #222;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 10px;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  color: var(--white);
+  text-decoration: none;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.85rem;
+  padding: 6px 14px;
+  border: 1px solid transparent;
+  transition: all 0.25s;
+  letter-spacing: 1px;
+}
+
+.nav a:hover {
+  color: var(--red-bright);
+  border-color: var(--red);
+}
+
+/* SEÇÕES */
+.section {
+  padding: 70px 8vw;
+  border-bottom: 1px solid #1a1a1a;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section h2 {
+  font-family: 'UnifrakturCook', cursive;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  color: var(--red-bright);
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+}
+
+.section-sub {
+  font-style: italic;
+  color: #888;
+  margin-bottom: 28px;
+}
+
+/* ABOUT */
+.about-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.about-text p { margin-bottom: 14px; }
+
+.quote {
+  border-left: 2px solid var(--red);
+  padding-left: 14px;
+  font-style: italic;
+  color: #bbb;
+  margin-top: 20px;
+}
+
+.info-box {
+  border: 1px solid #222;
+  background: var(--dark);
+  padding: 22px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.85rem;
+}
+
+.info-box div {
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed #222;
+}
+
+.info-box div:last-child { border: none; margin-bottom: 0; padding-bottom: 0; }
+
+.info-box span {
+  display: block;
+  color: var(--red-bright);
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+}
+
+/* MUSIC */
+.music-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.music-bands h3, .music-tracklist h3, .card h3, .aesthetic h3 {
+  color: var(--red-bright);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.9rem;
+  letter-spacing: 3px;
+  margin-bottom: 16px;
+}
+
+.music-bands ul {
+  list-style: none;
+  columns: 2;
+  gap: 20px;
+}
+
+.music-bands li {
+  padding: 4px 0;
+  font-size: 0.95rem;
+}
+
+.music-bands li::before { content: "† "; color: var(--red); }
+
+.music-tracklist ol { list-style: none; }
+
+.music-tracklist li {
+  padding: 10px 0;
+  border-bottom: 1px dashed #222;
+  font-size: 0.95rem;
+}
+
+.music-tracklist li span {
+  color: var(--red-bright);
+  font-family: 'Share Tech Mono', monospace;
+  margin-right: 10px;
+}
+
+.spotify-box {
+  margin-top: 26px;
+  border: 1px dashed var(--red);
+  padding: 20px;
+  text-align: center;
+  background: #0d0d0d;
+}
+
+.spotify-box p {
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--red-bright);
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+}
+
+.spotify-placeholder {
+  color: #555;
+  font-style: italic;
+  font-size: 0.85rem;
+  padding: 30px 10px;
+}
+
+/* CARDS */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.card {
+  background: var(--dark);
+  border: 1px solid #222;
+  padding: 22px;
+  transition: transform 0.3s, border-color 0.3s, background 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--red);
+  background: #151010;
+}
+
+.card p { font-size: 0.92rem; color: #ccc; }
+
+.aesthetic {
+  margin-top: 40px;
+  padding: 28px;
+  border: 1px solid var(--red);
+  background: linear-gradient(135deg, #0d0d0d 0%, #150a0d 100%);
+}
+
+.aesthetic p { color: #bbb; font-style: italic; }
+
+/* GALLERY */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.ph {
+  aspect-ratio: 1/1;
+  background: var(--dark);
+  border: 1px solid #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: var(--red);
+  position: relative;
+  transition: all 0.3s;
+  overflow: hidden;
+}
+
+.ph:hover {
+  border-color: var(--red-bright);
+  transform: scale(1.02);
+  color: var(--red-bright);
+}
+
+.ph::after {
+  content: attr(data-label);
+  position: absolute;
+  bottom: 8px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  color: #555;
+}
+
+.ph img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* LINKS */
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.link-btn {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  color: var(--white);
+  text-decoration: none;
+  padding: 14px 26px;
+  border: 1px solid #333;
+  background: var(--dark);
+  transition: all 0.3s;
+}
+
+.link-btn:hover {
+  border-color: var(--red-bright);
+  color: var(--red-bright);
+  background: #150a0d;
+  transform: translateY(-2px);
+}
+
+/* FOOTER */
+footer {
+  padding: 50px 8vw;
+  text-align: center;
+  border-top: 1px solid #222;
+  background: #050505;
+}
+
+.exe {
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--red-bright);
+  font-size: 1rem;
+  letter-spacing: 3px;
+}
+
+.mark {
+  color: #666;
+  margin: 10px 0;
+  letter-spacing: 4px;
+}
+
+.made {
+  font-style: italic;
+  color: #444;
+  font-size: 0.85rem;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+  .header { padding: 50px 6vw 30px; }
+  .section { padding: 50px 6vw; }
+
+  .about-grid,
+  .music-grid {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .music-bands ul { columns: 1; }
+
+  .nav { gap: 4px; padding: 10px 6px; }
+  .nav a { font-size: 0.72rem; padding: 5px 9px; }
+
+  .logo { font-size: clamp(2.8rem, 16vw, 5rem); }
+}
